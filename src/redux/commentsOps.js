@@ -9,3 +9,12 @@ export const fetchComments = createAsyncThunk('comments/fetchByProduct',async pr
     }
 );
   
+export const addComment = createAsyncThunk('comments/add', async newComment => {
+  const { data } = await axios.post('/comments', newComment);
+  return data;
+});
+
+export const deleteComment = createAsyncThunk('comments/delete', async commentId => {
+  await axios.delete(`/comments/${commentId}`);
+  return commentId;
+});

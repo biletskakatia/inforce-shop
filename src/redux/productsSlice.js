@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchProducts, addProducts, deleteProduct, updateProduct } from './productsOps.js';
+import { fetchProducts, addProduct, deleteProduct, updateProduct } from './productsOps.js';
 
 const initialState = {
     items: [],
@@ -27,15 +27,15 @@ const productsSlice = createSlice({
             })
 
             //add
-            .addCase(addProducts.pending, state => {
+            .addCase(addProduct.pending, state => {
                 state.isLoading = true
                 state.error = null
             })
-            .addCase(addProducts.fulfilled, (state, { payload }) => {
+            .addCase(addProduct.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
                 state.items.push(payload)
             })
-            .addCase(addProducts.rejected, (state, action) => {
+            .addCase(addProduct.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.error.message
             })
